@@ -18,10 +18,11 @@ public class AccountDAO {
             // Inserting into the account database
             // Username, password
 
-            String sql = "Insert into account (username, password) values (?,?)";
+            String sql = "Insert into account ( username, password) values (?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             // write preparedStatement's setString method here.
+
             preparedStatement.setString(1, account.username);
             preparedStatement.setString(2, account.password);
 
@@ -34,6 +35,10 @@ public class AccountDAO {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        return null;
+    }
+
+    public Account UserLogin(Account account) {
         return null;
     }
 

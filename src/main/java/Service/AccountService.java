@@ -16,7 +16,15 @@ public class AccountService {
     }
 
     public Account UserRegister(Account account) {
+        if (account.username == "")
+            return null;
+        if (account.password.length() < 4)
+            return null;
         return accountDAO.UserRegister(account);
+    }
+
+    public Account UserLogin(Account account) {
+        return null;
     }
 
 }
