@@ -24,7 +24,12 @@ public class AccountService {
     }
 
     public Account UserLogin(Account account) {
-        return null;
+        Account test = accountDAO.UserLogin(account);
+        if (test == null) {
+            return null;
+        }
+
+        return accountDAO.UserLogin(account);
     }
 
 }
