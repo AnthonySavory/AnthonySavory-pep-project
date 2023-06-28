@@ -2,7 +2,6 @@ package Service;
 
 import Model.Account;
 import DAO.AccountDAO;
-import java.util.List;
 
 public class AccountService {
     private AccountDAO accountDAO;
@@ -24,11 +23,6 @@ public class AccountService {
     }
 
     public Account UserLogin(Account account) {
-        Account test = accountDAO.UserLogin(account);
-        if (test == null) {
-            return null;
-        }
-
         return accountDAO.UserLogin(account);
     }
 

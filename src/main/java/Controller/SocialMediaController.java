@@ -44,7 +44,7 @@ public class SocialMediaController {
         // app.get("example-endpoint", this::exampleHandler);
         app.post("/register", this::registerAccountHandler);
         app.post("/login", this::loginAccountHandler);
-
+        app.get("/messages", this::getAllMessagesHandler);
         return app;
     }
 
@@ -78,6 +78,12 @@ public class SocialMediaController {
         } else {
             ctx.status(401);
         }
+    }
+
+    // Messages Handlers
+
+    private void getAllMessagesHandler(Context ctx) {
+        ctx.json(messageService.getAllMessages());
     }
 
 }
