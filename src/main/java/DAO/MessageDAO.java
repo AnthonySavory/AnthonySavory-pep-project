@@ -31,9 +31,7 @@ public class MessageDAO {
     public Message insertMessage(Message message) {
         Connection connection = ConnectionUtil.getConnection();
         try {
-            // Write SQL logic here. When inserting, you only need to define the
-            // departure_city and arrival_city
-            // values (two columns total!)
+
             String sql = "Insert into message (posted_by, message_text, time_posted_epoch) values (?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
@@ -59,9 +57,7 @@ public class MessageDAO {
     public Message getMessageById(int id) {
         Connection connection = ConnectionUtil.getConnection();
         try {
-            // Write SQL logic here. When inserting, you only need to define the
-            // departure_city and arrival_city
-            // values (two columns total!)
+
             String sql = "select * from message where message_id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
@@ -78,6 +74,23 @@ public class MessageDAO {
             System.out.println(e.getMessage());
         }
         return null;
+    }
+
+    public void updateMessage(int id, Message message) {
+        Connection connection = ConnectionUtil.getConnection();
+        try {
+            // Write SQL logic here
+            String sql = "update message set message_text = ? where message_id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            // write PreparedStatement setString and setInt methods here.
+            preparedStatement.setString(1, message.message_text);
+            preparedStatement.setInt(2, id);
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 }

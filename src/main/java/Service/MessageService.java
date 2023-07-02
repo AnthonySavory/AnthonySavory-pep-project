@@ -21,11 +21,24 @@ public class MessageService {
     }
 
     public Message insertMessage(Message message) {
+        if (message.message_text == "")
+            return null;
+        String testmessage = message.getMessage_text();
+        if (testmessage.length() > 255)
+            return null;
         return messageDAO.insertMessage(message);
     }
 
     public Message getMessageById(int id) {
         return messageDAO.getMessageById(id);
+    }
+
+    public Message updateMessage(int id, Message message) {
+        if (message.message_text == "")
+            return null;
+
+        return messageDAO.getMessageById(id);
+
     }
 
 }
