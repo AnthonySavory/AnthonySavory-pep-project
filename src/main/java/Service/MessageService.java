@@ -23,8 +23,7 @@ public class MessageService {
     public Message insertMessage(Message message) {
         if (message.message_text == "")
             return null;
-        String testmessage = message.getMessage_text();
-        if (testmessage.length() > 255)
+        if (message.message_text.length() >= 255)
             return null;
         return messageDAO.insertMessage(message);
     }
@@ -36,7 +35,18 @@ public class MessageService {
     public Message updateMessage(int id, Message message) {
         if (message.message_text == "")
             return null;
+        if (message.message_text.length() >= 255)
+            return null;
+        messageDAO.updateMessage(id, message);
+        return messageDAO.getMessageById(id);
 
+    }
+
+    public Message deleteMessage(int id) {
+        Message test = messageDAO.getMessageById(id);
+        messageDAO.deleteMessage(id);
+        if (messageDAO.getMessageById(id) == test)
+            return null;
         return messageDAO.getMessageById(id);
 
     }
