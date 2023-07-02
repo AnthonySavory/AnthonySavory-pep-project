@@ -20,4 +20,8 @@ public class MessageService {
         return messageDAO.getAllMessages();
     }
 
+    public Message insertMessage(Message message) {
+        return messageDAO.insertMessage(message);
+    }
+
 }
