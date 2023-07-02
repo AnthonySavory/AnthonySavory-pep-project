@@ -56,4 +56,28 @@ public class MessageDAO {
         return null;
     }
 
+    public Message getMessageById(int id) {
+        Connection connection = ConnectionUtil.getConnection();
+        try {
+            // Write SQL logic here. When inserting, you only need to define the
+            // departure_city and arrival_city
+            // values (two columns total!)
+            String sql = "select * from message where message_id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+            // write preparedStatement's setString and setInt methods here.
+            preparedStatement.setInt(1, id);
+
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                Message generated_Message = new Message(rs.getInt("message_id"), rs.getInt("posted_by"),
+                        rs.getString("message_text"), rs.getInt("time_posted_epoch"));
+                return generated_Message;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
 }

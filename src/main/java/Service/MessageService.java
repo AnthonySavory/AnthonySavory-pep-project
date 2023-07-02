@@ -24,4 +24,8 @@ public class MessageService {
         return messageDAO.insertMessage(message);
     }
 
+    public Message getMessageById(int id) {
+        return messageDAO.getMessageById(id);
+    }
+
 }
